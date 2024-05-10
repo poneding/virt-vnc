@@ -1,4 +1,7 @@
-FROM quay.io/bitnami/kubectl:1.15
-ADD static /static
-CMD ["proxy", "--www=/static", "--accept-hosts=^.*$", "--address=[::]", "--api-prefix=/k8s/", "--www-prefix="]
+FROM alpine
 
+RUN apk add --no-cache kubectl
+COPY static /static
+COPY docker_entrypoint.sh /docker_entrypoint.sh
+
+CMD ["/bin/sh", "-c", "/docker_entrypoint.sh"]

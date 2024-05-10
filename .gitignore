@@ -1,0 +1,4 @@
+# ignore local build files
+config
+Dockerfile.local
+build_local.sh
